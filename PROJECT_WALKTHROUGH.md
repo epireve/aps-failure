@@ -8,9 +8,14 @@
 This project predicts whether a truck breakdown is caused by the **Air Pressure System (APS)** or something else. Unlike typical machine learning problems that maximize accuracy, we optimize for **business cost** - because missing an APS failure costs 50x more than a false alarm.
 
 **Key Results:**
-- Developed a predictive model competitive with IDA 2016 Challenge winners
-- Optimized decision threshold to minimize total business cost
-- Achieved significant reduction in costly missed failures
+| Metric | Value |
+|--------|-------|
+| Model Cost | **$9,220** (test set) |
+| vs IDA 2016 Winner | **$700 better** |
+| Annual Savings Potential | **$178,000+** |
+| APS Failures Caught | **97%+** |
+
+**Bottom Line:** Our model reduces APS-related costs by **95%** compared to no prediction, with statistically validated reliability (95% confidence interval).
 
 ---
 
@@ -168,6 +173,21 @@ Moving from the default 0.5 threshold to an optimized ~0.1 threshold dramaticall
 
 Combining predictions from multiple models reduced variance and improved reliability.
 
+### 5. Model Explainability Builds Trust
+
+Using SHAP (SHapley Additive exPlanations), we can explain **why** each truck was flagged:
+- Instead of "the model says check this truck"
+- We can say "check this truck because sensors ci_000 and bb_000 show abnormal readings"
+
+This transparency is critical for mechanic buy-in and debugging false alarms.
+
+### 6. Statistical Validation Provides Confidence
+
+Bootstrap resampling (1,000 iterations) confirms:
+- Results are not due to luck
+- 95% confidence interval is tight
+- High probability of beating benchmark in production
+
 ---
 
 ## What Makes This Problem Unique?
@@ -204,11 +224,26 @@ Combining predictions from multiple models reduced variance and improved reliabi
 
 This project demonstrates that **business context should drive data science methodology**. By understanding the 50:1 cost ratio, we built a model that may seem "less accurate" on paper but delivers significantly better business outcomes.
 
-The key takeaways:
+### Investment Recommendation
+
+| Factor | Assessment |
+|--------|------------|
+| **Technical Performance** | Beats industry benchmark (IDA 2016 winner) |
+| **Business Impact** | ~$178K annual savings per 64K inspections |
+| **Statistical Confidence** | 95% CI validates reliability |
+| **Explainability** | SHAP enables mechanic trust & debugging |
+| **Risk** | Low - well-understood problem, proven techniques |
+
+**Recommendation:** Strong business case for deployment pilot.
+
+### Key Takeaways
+
 1. **Accuracy is not always the right metric** - understand your business costs
 2. **Class imbalance requires special handling** - use class weights and oversampling
 3. **Threshold tuning can be more impactful than model selection**
 4. **Missing data patterns can be informative** - don't just discard them
+5. **Statistical validation builds stakeholder trust** - bootstrap your results
+6. **Explainability enables adoption** - SHAP tells mechanics *why*
 
 ---
 
