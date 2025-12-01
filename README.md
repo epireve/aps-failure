@@ -1,6 +1,5 @@
 # APS Failure Prediction at Scania Trucks
 
-## Overview
 Predictive model for Air Pressure System (APS) failures in heavy Scania trucks using cost-sensitive machine learning. For full analysis and code, see [Notebook](aps_failure_analysis.ipynb).
 
 ## Business Context
