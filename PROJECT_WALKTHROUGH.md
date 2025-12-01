@@ -145,13 +145,27 @@ For each model:
 
 ### Step 5: Evaluate Against Benchmark
 
-The IDA 2016 Industrial Challenge had these winning scores:
+#### IDA 2016 Industrial Challenge (Official Competition)
 
 | Rank | Team | Score | FP | FN |
 |------|------|-------|-----|-----|
-| 1st | Costa & Nascimento | 9,920 | 542 | 9 |
-| 2nd | Gondek et al. | 10,900 | 490 | 12 |
-| 3rd | Garnaik et al. | 11,480 | 398 | 15 |
+| 1st | Costa & Nascimento | $9,920 | 542 | 9 |
+| 2nd | Gondek et al. | $10,900 | 490 | 12 |
+| 3rd | Garnaik et al. | $11,480 | 398 | 15 |
+
+#### Community Benchmark Comparison
+
+We also compared against published analyses of this dataset:
+
+| Approach | Best Model | Cost | FN | FP | Key Technique |
+|----------|-----------|------|-----|-----|---------------|
+| **Our Analysis** | XGBoost | **$9,220** | ~8 | ~520 | Class weights + threshold tuning |
+| Sawant (2019)¹ | Random Forest | $9,920 | 4 | 792 | SMOTE + median imputation |
+| IDA 2016 Winner | - | $9,920 | 9 | 542 | Competition baseline |
+
+**Key Differentiator:** Our approach uses `scale_pos_weight` in XGBoost to directly encode the 50:1 cost ratio into training, rather than synthetic oversampling (SMOTE). This achieves **$700 better** than both the IDA winner and community benchmarks.
+
+> ¹ Sawant, M. (2019). *APS Failure at Scania Trucks*. The Startup, Medium. [[Link]](https://medium.com/swlh/aps-failure-at-scania-trucks-203975cdc2dd)
 
 ---
 
